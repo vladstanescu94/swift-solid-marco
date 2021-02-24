@@ -9,33 +9,46 @@ class Handler {
     }
 }
 
-class Rectangle {
+protocol Polygon {
+    var area: Float { get }
+}
 
-    var width: Float = 0
-    var length: Float = 0
+class Rectangle: Polygon {
+
+    private let width: Float
+    private let length: Float
+
+    init(width: Float, length: Float) {
+        self.width = width
+        self.length = length
+    }
 
     var area: Float {
         return width * length
     }
 }
 
-class Square: Rectangle {
+class Square: Polygon {
 
-    override var width: Float {
-        didSet {
-            length = width
-        }
+    private let side: Float
+
+    init(side: Float) {
+        self.side = side
+    }
+
+    var area: Float {
+        return pow(side, 2)
     }
 }
 
-func printArea(of rectangle: Rectangle) {
-    rectangle.length = 5
-    rectangle.width = 2
-    print(rectangle.area)
+
+func printArea(of polygon: Polygon) {
+    print(polygon.area)
 }
 
-let rectangle = Rectangle()
+
+let rectangle = Rectangle(width: 2, length: 5)
 printArea(of: rectangle) // 10
 
-let square = Square()
+let square = Square(side: 2)
 printArea(of: square) // 4
