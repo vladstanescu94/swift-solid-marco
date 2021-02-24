@@ -1,30 +1,27 @@
 import Foundation
 
+protocol Printable {
+    func printDetails() -> String
+}
+
 class Logger {
 
     func printData() {
-        let cars = [
+        let cars: [Printable] = [
             Car(name: "Batmobile", color: "Black"),
             Car(name: "SuperCar", color: "Gold"),
-            Car(name: "FamilyCar", color: "Grey")
+            Car(name: "FamilyCar", color: "Grey"),
+            Bicycle(type: "BMX"),
+            Bicycle(type: "Tandem")
         ]
 
         cars.forEach { car in
             print(car.printDetails())
         }
-
-        let bicycles = [
-            Bicycle(type: "BMX"),
-            Bicycle(type: "Tandem")
-        ]
-
-        bicycles.forEach { bicycles in
-            print(bicycles.printDetails())
-        }
     }
 }
 
-class Car {
+class Car: Printable {
     let name: String
     let color: String
 
@@ -38,7 +35,7 @@ class Car {
     }
 }
 
-class Bicycle {
+class Bicycle: Printable {
     let type: String
 
     init(type: String) {
