@@ -2,16 +2,9 @@ import Foundation
 
 class Handler {
 
-    func save(string: String) {
+    func save(string: String, minChars: Int = 0) {
+        guard string.count >= minChars else { return }
+
         // Save string in the Cloud
-    }
-}
-
-class FilteredHandler: Handler {
-
-    override func save(string: String) {
-        guard string.count > 5 else { return }
-
-        super.save(string: string)
     }
 }
