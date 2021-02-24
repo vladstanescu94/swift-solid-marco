@@ -1,21 +1,39 @@
 import Foundation
 
 class Handler {
-    func handle() {
-        let data = requestDataToAPI()
-        let array = parse(data: data)
-        saveToDB(array: array)
+    
+    let apiHandler: APIHandler
+    let parseHandler: ParseHandler
+    let dbHandler: DBHandler
+    
+    init(apiHandler: APIHandler, parseHandler: ParseHandler, dbHandler: DBHandler) {
+        self.apiHandler = apiHandler
+        self.parseHandler = parseHandler
+        self.dbHandler = dbHandler
     }
     
-    private func requestDataToAPI() -> Data {
+    func handle() {
+        let data = apiHandler.requestDataToAPI()
+        let array = parseHandler.parse(data: data)
+        dbHandler.saveToDB(array: array)
+    }
+}
+
+class APIHandler {
+    
+    func requestDataToAPI() -> Data {
         return Data()
     }
+}
+
+class ParseHandler {
     
-    private func parse(data: Data) -> [String] {
+    func parse(data: Data) -> [String] {
         return [""]
     }
-    
-    private func saveToDB(array: [String]) {
+}
 
-    }
+class DBHandler {
+    
+    func saveToDB(array: [String]) { }
 }
