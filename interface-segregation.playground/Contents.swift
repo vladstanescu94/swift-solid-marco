@@ -34,7 +34,13 @@ class PoorButton: TapProtocol {
 
 // MARK: - Fat Class
 
-class Video {
+protocol Playable {
+    var title: String { get }
+    var url: String { get }
+    var duration: Int { get }
+}
+
+class Video: Playable {
     var title: String = "My Video"
     var description: String = "This is a beautiful video"
     var author: String = "Vlad Stanescu"
@@ -44,7 +50,7 @@ class Video {
     var update: Date = Date()
 }
 
-func play(video: Video) {
+func play(video: Playable) {
     // load the player UI
     // load the content at video.url
     // add video.title to the player UI title
