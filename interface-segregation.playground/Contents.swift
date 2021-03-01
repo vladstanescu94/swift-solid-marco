@@ -1,12 +1,18 @@
 import Foundation
 
-protocol GestureProtocol {
+protocol TapProtocol {
     func didTap()
+}
+
+protocol DoubleTapProtocol {
     func didDoubleTap()
+}
+
+protocol LongPressProtocol {
     func didLongPress()
 }
 
-class SuperButton: GestureProtocol {
+class SuperButton: TapProtocol, DoubleTapProtocol, LongPressProtocol {
     func didTap() {
         // send tap
     }
@@ -20,16 +26,8 @@ class SuperButton: GestureProtocol {
     }
 }
 
-class PoorButton: GestureProtocol {
+class PoorButton: TapProtocol {
     func didTap() {
         // send tap
-    }
-    
-    func didDoubleTap() {
-        // not supported
-    }
-    
-    func didLongPress() {
-        // not supported
     }
 }
